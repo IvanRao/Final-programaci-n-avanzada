@@ -42,7 +42,9 @@ public class Bank {
 	public double getBalance() {
 		return this.customer.account.balance;
 	}
-    
-    
+	
+	public String welcomeCustomer() {
+		return this.customer.welcome();
+	}
 
 }

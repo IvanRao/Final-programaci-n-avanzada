@@ -4,9 +4,6 @@ public class CashDispenser{
 	private static final CashDispenser instance = new CashDispenser();
 	private final double _totalCash = 10000;
 	
-	public CashDispenser() {
-	}
-
 	public static CashDispenser getInstance() {
 		return instance;
 	}
@@ -23,6 +20,4 @@ public class CashDispenser{
 			return false;
 		}
 	}
-
-
 }
