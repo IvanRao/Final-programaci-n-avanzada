@@ -17,9 +17,8 @@ public class Account {
 		return accountNumber;
 	}
     
-    @Override
-    public String toString() {
-        return "Checking account: current balance is " + balance;
+    public String getCustomerBalance() {
+        return "\nVerificando cuenta: su balance es de $" + balance;
     }
     	
 }

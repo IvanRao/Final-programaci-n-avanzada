@@ -1,19 +1,26 @@
 package atmSystem;
 
+import hardwareDevices.CashDispenser;
+import hardwareDevices.DepositeSlot;
+
 public class Bank {
 	private static final Bank instance = new Bank();
 	
 	private Customer[] customers;
 	private int numberOfCustomers;
 	private Customer customer;
-	
+	private static DepositeSlot depositeSlot;
+	private static CashDispenser cashDispenser;
+
 	private Bank() {
-        customers = new Customer[5];
-        numberOfCustomers = 0;
-    }
-    
-    public static Bank getInstance() {
-        return instance;
+		customers = new Customer[5];
+		numberOfCustomers = 0;
+	}
+
+	public static Bank getInstance() {
+		cashDispenser = new CashDispenser();
+		depositeSlot = new DepositeSlot();
+		return instance;
     }
 
     public void addCustomer(String firstName, String lastName, Account account, int nip) {
@@ -39,12 +46,30 @@ public class Bank {
 		return false;
 	}
 
-	public double getBalance() {
-		return this.customer.account.balance;
+	public String getBalance() {
+		return this.customer.account.getCustomerBalance();
 	}
 	
 	public String welcomeCustomer() {
 		return this.customer.welcome();
+	}
+
+	public boolean withdrawCash(double amount) {
+		if (cashDispenser.withdrawCash(this.customer.account.balance, amount)){
+			this.customer.account.balance -= amount;
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean depositCash(double amount) {
+		if (depositeSlot.depositCash(this.customer.account.balance, amount)){
+			this.customer.account.balance += amount;
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

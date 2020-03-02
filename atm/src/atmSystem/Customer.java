@@ -20,10 +20,16 @@ public class Customer {
     public String getLastName() {
         return lastName;
     }
-	
+    
+    public void addAccount(int number, double balance){
+        this.account = new Account(number, balance);
+    }
+
 	public String welcome() {
-		return "Welcome " + firstName + lastName;
-	}
+		return "\nBienvenido " + firstName + " " + lastName;
+    }
+    
+
 
 
 }
